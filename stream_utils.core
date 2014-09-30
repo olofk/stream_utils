@@ -1,19 +1,27 @@
 CAPI=1
 [main]
 simulators = icarus modelsim
+depend = fifo
 
 [verilog]
-src_files = rtl/verilog/stream_downsizer.v
-tb_private_src_files = bench/stream_downsizer_tb.v
+src_files =
+ rtl/verilog/stream_downsizer.v
+
+tb_src_files =
+ bench/stream_writer.v
+ bench/stream_reader.v
+
+tb_private_src_files =
+ bench/stream_downsizer_tb.v
 
 [simulator]
 toplevel = stream_downsizer_tb
 
 [icarus]
-depend = fifo vlog_tb_utils
+depend = vlog_tb_utils
 
 [modelsim]
-depend = fifo vlog_tb_utils
+depend = vlog_tb_utils
 
 [plusargs]
 read_rate = str Stream read rate
