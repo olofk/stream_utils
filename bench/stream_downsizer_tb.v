@@ -22,23 +22,24 @@ module stream_downsizer_tb;
    wire 	     m_valid;
    wire 	     m_ready;
 
-   fifo_writer
+   stream_writer
      #(.WIDTH (DW_IN),
        .MAX_BLOCK_SIZE (WORDS))
    writer
      (.clk (clk),
-      .dout (s_data),
-      .wren (s_valid),
-      .full (!s_ready));
+      .stream_m_data_o  (s_data),
+      .stream_m_valid_o (s_valid),
+      .stream_m_ready_i (s_ready));
 
-   fifo_fwft_reader
+   stream_reader
      #(.WIDTH (DW_OUT),
        .MAX_BLOCK_SIZE (WORDS*SCALE))
    reader
      (.clk (clk),
-      .din  (m_data),
-      .rden (m_ready),
-      .empty (!m_valid));
+      .stream_s_data_i  (m_data),
+      .stream_s_valid_i (m_valid),
+      .stream_s_ready_o (m_ready));
+
    
    stream_downsizer
      #(.DW_OUT (DW_OUT),
@@ -65,12 +66,12 @@ module stream_downsizer_tb;
       create_stimuli();
       
       if($value$plusargs("write_rate=%f", write_rate)) begin
-	 $display("Setting FIFO write rate to %0f", write_rate);
+	 $display("Setting stream write rate to %0f", write_rate);
 	 writer.rate=write_rate;
       end
 
       if($value$plusargs("read_rate=%f", read_rate)) begin
-	 $display("Setting FIFO read rate to %0f", read_rate);
+	 $display("Setting stream read rate to %0f", read_rate);
 	 reader.rate=read_rate;
       end
 
