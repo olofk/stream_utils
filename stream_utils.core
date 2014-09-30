@@ -5,6 +5,7 @@ depend = fifo
 
 [verilog]
 src_files =
+ rtl/verilog/stream_upsizer.v
  rtl/verilog/stream_downsizer.v
 
 tb_src_files =
@@ -12,6 +13,7 @@ tb_src_files =
  bench/stream_reader.v
 
 tb_private_src_files =
+ bench/stream_upsizer_tb.v
  bench/stream_downsizer_tb.v
 
 [simulator]
