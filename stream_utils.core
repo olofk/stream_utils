@@ -7,6 +7,7 @@ depend = fifo
 src_files =
  rtl/verilog/stream_upsizer.v
  rtl/verilog/stream_downsizer.v
+ rtl/verilog/stream_fifo_if.v
 
 tb_src_files =
  bench/stream_writer.v
