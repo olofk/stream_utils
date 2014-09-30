@@ -8,6 +8,7 @@ src_files =
  rtl/verilog/stream_upsizer.v
  rtl/verilog/stream_downsizer.v
  rtl/verilog/stream_fifo_if.v
+ rtl/verilog/stream_dual_clock_fifo.v
 
 tb_src_files =
  bench/stream_writer.v
@@ -16,6 +17,7 @@ tb_src_files =
 tb_private_src_files =
  bench/stream_upsizer_tb.v
  bench/stream_downsizer_tb.v
+; bench/stream_dual_clock_fifo_tb.v
 
 [simulator]
 toplevel = stream_downsizer_tb
