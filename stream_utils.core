@@ -9,6 +9,7 @@ src_files =
  rtl/verilog/stream_downsizer.v
  rtl/verilog/stream_fifo_if.v
  rtl/verilog/stream_dual_clock_fifo.v
+ rtl/verilog/stream_mux.v
 
 tb_src_files =
  bench/stream_writer.v
