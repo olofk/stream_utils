@@ -37,8 +37,8 @@ module stream_writer
 
 	 wr = 1'b0;
 	 while(!wr) begin
-	    @(posedge clk);
 	    wr = stream_m_ready_i;
+	    @(posedge clk);
 	 end
 	 stream_m_valid_o <= 1'b0;
       end
