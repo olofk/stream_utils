@@ -20,7 +20,7 @@ module stream_dual_clock_fifo
    wire 	    fifo_empty;
    wire 	    full;
    
-   assign stream_s_ready_o = !full;
+   assign stream_s_ready_o = !(full | wr_rst);
    
 	
    // orig_fifo is just a normal (non-FWFT) synchronous or asynchronous FIFO
@@ -30,7 +30,7 @@ module stream_dual_clock_fifo
    dual_clock_fifo
      (.wr_rst_i  (wr_rst),       
       .wr_clk_i  (wr_clk),
-      .wr_en_i   (stream_s_valid_i),
+      .wr_en_i   (stream_s_valid_i & stream_s_ready_o),
       .wr_data_i (stream_s_data_i),
       .full_o    (full),
 
