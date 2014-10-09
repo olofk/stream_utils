@@ -17,10 +17,10 @@ tb_src_files =
 tb_private_src_files =
  bench/stream_upsizer_tb.v
  bench/stream_downsizer_tb.v
-; bench/stream_dual_clock_fifo_tb.v
+ bench/stream_dual_clock_fifo_tb.v
 
 [simulator]
-toplevel = stream_downsizer_tb
+toplevel = stream_dual_clock_fifo_tb
 
 [icarus]
 depend = vlog_tb_utils
