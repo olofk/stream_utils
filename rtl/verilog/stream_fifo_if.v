@@ -16,8 +16,9 @@ module stream_fifo_if
    reg 		    fifo_valid, middle_valid;
    reg [DW-1:0]     middle_dout;
    
-   wire will_update_middle = fifo_valid && (middle_valid == will_update_dout);
    wire will_update_dout = (middle_valid || fifo_valid) && (stream_m_ready_i || !stream_m_valid_o);
+   wire will_update_middle = fifo_valid && (middle_valid == will_update_dout);
+
    assign fifo_rd_en_o = (!fifo_empty_i) && !(middle_valid && stream_m_valid_o && fifo_valid);
    always @(posedge clk)
       if (rst)

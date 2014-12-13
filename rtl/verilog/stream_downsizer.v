@@ -19,10 +19,11 @@ module stream_downsizer
    reg [$clog2(DW_OUT*SCALE)-1:0] idx;
    reg [DW_OUT*SCALE-1:0] 	  data;
    
-   assign s_ready_o = (((idx == 0) & !full) | (wrap)) & !rst_r;
    wire 		    wr = s_valid_i & s_ready_o;
    wire 		    rd = m_valid_o & m_ready_i;
    wire 		    wrap = (idx == SCALE-1) & rd;
+
+   assign s_ready_o = (((idx == 0) & !full) | (wrap)) & !rst_r;
    
    assign m_data_o = data[idx*DW_OUT+:DW_OUT];
    assign m_valid_o = full;
