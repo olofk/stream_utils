@@ -26,18 +26,17 @@ module stream_writer
 	 randval = $dist_uniform(seed, 0, 1000) / 1000.0;
 	 wr = (randval <= rate);
 
-	 stream_m_data_o <= word_i;
-
 	 while(!wr) begin
 	    randval = $dist_uniform(seed, 0, 1000) / 1000.0;
 	    wr = (randval <= rate);
 	    @(posedge clk);
 	 end
+	 stream_m_data_o <= word_i;
 	 stream_m_valid_o <= 1'b1;
 
-	 wr = 1'b0;
-	 while(!wr) begin
-	    wr = stream_m_ready_i;
+	 @(posedge clk);
+
+	 while(!stream_m_ready_i) begin
 	    @(posedge clk);
 	 end
 	 stream_m_valid_o <= 1'b0;
@@ -58,7 +57,6 @@ module stream_writer
 	 if(rate < 0.0) rate = 0.0;
 
 	 index = 0;
-	 
 	 while(index < length_i) begin
 	    write_word(data_i[index*WIDTH+:WIDTH]);
 	    index = index + 1;
