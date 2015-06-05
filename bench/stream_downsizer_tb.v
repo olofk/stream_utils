@@ -120,10 +120,10 @@ module stream_downsizer_tb;
 	 passed = 1'b1;
 	 for(idx=0 ; idx<WORDS*SCALE ; idx=idx+1) begin
 	    expw = expected[DW_OUT*idx+:DW_OUT];
-	    recw = expected[DW_OUT*idx+:DW_OUT];
+	    recw = received[DW_OUT*idx+:DW_OUT];
 	    
 	    if(expw !== recw) begin
-	       $display("Expected 0x%4x. Got 0x%4x");
+	       $display("Expected 0x%4x. Got 0x%4x", expw, recw);
 	       passed = 1'b0;
 	    end
 	 end
