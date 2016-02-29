@@ -1,6 +1,7 @@
 module stream_upsizer
   #(parameter DW_IN = 0,
-    parameter SCALE = 0)
+    parameter SCALE = 0,
+    parameter BIG_ENDIAN = 0)
    
    (input clk,
     input 		     rst,
@@ -27,7 +28,16 @@ module stream_upsizer
    
    assign s_ready_o = !((full & !rd) | rst_r);
 
-   assign m_data_o = data;
+   integer 		    i;
+   function automatic [DW_IN*SCALE-1:0] reverse;
+      input [DW_IN*SCALE-1:0] d;
+      begin
+	 for(i=0;i<SCALE;i=i+1)
+	   reverse[(i*DW_IN)+:DW_IN] = d[((SCALE-i-1)*DW_IN)+:DW_IN];
+      end
+   endfunction
+
+   assign m_data_o = BIG_ENDIAN ? reverse(data) : data;
    assign m_valid_o = full;
  
    always @(posedge clk) begin
