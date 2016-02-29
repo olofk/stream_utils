@@ -110,6 +110,8 @@ module stream_downsizer_tb;
       end
    endtask
 
+   vlog_tap_generator #(.TAPFILE ("stream_downsizer_tb.tap")) tap();
+
    task verify;
       integer idx;
       reg [DW_OUT-1:0] expw;
@@ -127,10 +129,13 @@ module stream_downsizer_tb;
 	       passed = 1'b0;
 	    end
 	 end
-	 if(passed)
+	 if(passed) begin
+	   tap.ok("stream downsizer");
 	   $display("Test passed");
-	 else
+	 end else begin
+	   tap.nok("stream downsizer");
 	   $display("Test failed");
+	 end
       end
    endtask
    
