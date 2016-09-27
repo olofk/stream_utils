@@ -1,27 +1,26 @@
 CAPI=1
 [main]
+
+name = stream_utils-1.2
+
 simulators = icarus modelsim
-depend = fifo-1.0 verilog-arbiter-r1
+depend = >=fifo-1.0
 
 
 [fileset src_files]
 files =
  rtl/verilog/stream_upsizer.v
  rtl/verilog/stream_downsizer.v
- rtl/verilog/stream_arbiter.v
  rtl/verilog/stream_fifo_if.v
  rtl/verilog/stream_dual_clock_fifo.v
  rtl/verilog/stream_mux.v
 file_type = verilogSource
-scope = public
-usage = sim synth
 
 [fileset bfm_files]
 files =
  bench/stream_writer.v
  bench/stream_reader.v
 file_type = verilogSource
-scope = public
 usage = sim
 
 [fileset tb_files]
@@ -46,7 +45,7 @@ paramtype   = plusarg
 scope       = private
 
 [icarus]
-depend = vlog_tb_utils-1.0
+depend = >=vlog_tb_utils-1.1
 
 [modelsim]
-depend = vlog_tb_utils-1.0
+depend = >=vlog_tb_utils-1.1
