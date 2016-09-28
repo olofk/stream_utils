@@ -42,7 +42,7 @@ module stream_downsizer
 	 if(wrap)
 	   idx <= 0;
 	 else
-	   idx <= idx + 1;
+	   idx <= idx + 1'b1;
       end
 
       rst_r <= 1'b0;

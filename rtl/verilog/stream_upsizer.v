@@ -51,7 +51,7 @@ module stream_upsizer
 	if (wrap)
 	  idx <= 0;
 	else 
-	  idx <= idx + 1;
+	  idx <= idx + 1'b1;
 
       if (wr)
 	 data[idx*DW_IN+:DW_IN] <= s_data_i;
