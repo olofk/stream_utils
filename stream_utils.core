@@ -6,7 +6,6 @@ name = stream_utils-1.2
 simulators = icarus modelsim
 depend = >=fifo-1.0
 
-
 [fileset src_files]
 files =
  rtl/verilog/stream_upsizer.v
@@ -33,6 +32,10 @@ files =
 file_type = verilogSource
 scope = private
 usage = sim
+
+[fileset constraints]
+files = data/stream_utils.sdc[file_type=SDC]
+usage = quartus
 
 [parameter read_rate]
 datatype    = str
