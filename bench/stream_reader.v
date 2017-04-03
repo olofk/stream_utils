@@ -38,8 +38,10 @@ module stream_reader
 	      err_timeout = ($time-t0) > timeout;
 	 end
 	 stream_s_ready_o <= 1'b0;
-	 if(err_timeout)
-	   $error("%0d : Timeout in FIFO reader", $time);
+	 if(err_timeout) begin
+	    $display("%0d : Timeout in FIFO reader", $time);
+            $finish;
+         end
 	 err_timeout = 1'b0;
       end
    endtask
