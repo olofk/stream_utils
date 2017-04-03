@@ -103,6 +103,8 @@ module stream_upsizer_tb;
       end
    endtask
 
+   vlog_tap_generator #("stream_upsizer_tb.tap", 1) tap();
+
    task verify;
       integer idx;
       reg [DW_OUT-1:0] expw;
@@ -120,10 +122,13 @@ module stream_upsizer_tb;
 	       passed = 1'b0;
 	    end
 	 end
-	 if(passed)
-	   $display("Test passed");
-	 else
-	   $display("Test failed");
+	 if(passed) begin
+	    tap.ok("stream upsizer");
+	    $display("Test passed");
+	 end else begin
+	    tap.nok("stream upsizer");
+	    $display("Test failed");
+         end
       end
    endtask
    

@@ -110,7 +110,7 @@ module stream_downsizer_tb;
       end
    endtask
 
-   vlog_tap_generator #(.TAPFILE ("stream_downsizer_tb.tap")) tap();
+   vlog_tap_generator #("stream_downsizer_tb.tap", 1) tap();
 
    task verify;
       integer idx;
