@@ -25,8 +25,7 @@ module stream_fifo
       .full  (full),
       .dout  (m_data_o),
       .rd_en (m_ready_i & ~empty),
-      .empty (empty),
-      .cnt ());
+      .empty (empty));
 
    assign m_valid_o = ~empty;
    assign s_ready_o = ~(full | rst);
